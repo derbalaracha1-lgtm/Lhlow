@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>توحشتك...</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: inline-block;
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+        }
+
+        .card.closed {
+            transform: scale(1) rotate(0deg);
+        }
+
+        .card.closed:hover {
+            transform: scale(1.05);
+        }
+
+        .card.opened {
+            background: #fff0f5;
+            transform: scale(1.1) rotate(360deg);
+            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.2);
+        }
+
+        .bunny {
+            font-size: 70px;
+            margin-bottom: 15px;
+            display: inline-block;
+            transition: transform 0.5s ease;
+        }
+
+        .card.opened .bunny {
+            animation: bounceAndSpin 1s infinite alternate;
+        }
+
+        @keyframes bounceAndSpin {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(-10deg); }
+            100% { transform: translateY(0) rotate(10deg); }
+        }
+
+        h1 {
+            color: #c2185b;
+            font-size: 28px;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .hint {
+            margin-top: 15px;
+            font-size: 13px;
+            color: #ad1457;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" onclick="toggleCard()">
+        <div id="card" class="card closed">
+            <div id="bunny" class="bunny">📦🐰</div>
+            <h1 id="text">توحشتك</h1>
+            <div id="hint" class="hint">تكاي على الورقة باش تتفتح... 💌</div>
+        </div>
+    </div>
+
+    <script>
+        let isOpened = false;
+
+        function toggleCard() {
+            const card = document.getElementById('card');
+            const bunny = document.getElementById('bunny');
+            const text = document.getElementById('text');
+            const hint = document.getElementById('hint');
+
+            isOpened = !isOpened;
+
+            if (isOpened) {
+                card.classList.remove('closed');
+                card.classList.add('opened');
+                bunny.innerHTML = '🥺💖✨'; 
+                text.innerHTML = 'توحشتك بزاف! 🐰❤️';
+                hint.style.display = 'none';
+            } else {
+                card.classList.remove('opened');
+                card.classList.add('closed');
+                bunny.innerHTML = '📦🐰';
+                text.innerHTML = 'توحشتك';
+                hint.style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>
